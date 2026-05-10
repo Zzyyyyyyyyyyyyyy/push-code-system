@@ -1,0 +1,191 @@
+.staff-terminal-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+  color: var(--ink-3, #61605c);
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+}
+
+.staff-terminal-card__qr-panel {
+  align-items: center;
+  background: var(--surface-2, #f5f3ee);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  min-height: 224px;
+  padding: 24px;
+}
+
+.staff-terminal-card__qr {
+  aspect-ratio: 1;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+  display: grid;
+  min-height: 176px;
+  place-items: center;
+  width: min(100%, 224px);
+}
+
+.staff-terminal-card__qr svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.staff-terminal-card__content {
+  align-content: center;
+  display: grid;
+  gap: 16px;
+}
+
+.staff-terminal-card__eyebrow {
+  color: var(--ink-3, #61605c);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.staff-terminal-card__title {
+  color: var(--ink, #0a0a0a);
+  font-family: "Darky", var(--font-display, sans-serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.staff-terminal-card__description {
+  color: var(--ink-3, #61605c);
+  font-family: var(--font-body, "Open Sans", system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.staff-terminal-card__url-row {
+  display: grid;
+  gap: 16px;
+}
+
+.staff-terminal-card__url {
+  background: var(--surface-2, #f5f3ee);
+  border-radius: 8px;
+  color: var(--ink, #0a0a0a);
+  font-family: "Open Sans", var(--font-body, system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+  overflow-wrap: anywhere;
+  padding: 12px 16px;
+}
+
+.staff-terminal-card__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.staff-terminal-card__button {
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Darky", var(--font-display, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 0;
+  line-height: 1;
+  min-height: 44px;
+  padding: 12px 28px;
+  text-transform: uppercase;
+  transition: transform 180ms var(--spring, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.staff-terminal-card__button:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+}
+
+.staff-terminal-card__button:active:not(:disabled) {
+  transform: translate(3px, 3px) scale(0.98);
+}
+
+.staff-terminal-card__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.staff-terminal-card__button--primary {
+  background: #c1121f;
+  border: 1px solid #c1121f;
+  color: #fff;
+}
+
+.staff-terminal-card__button--ghost {
+  background: transparent;
+  border: 1px solid var(--ink, #0a0a0a);
+  color: var(--ink, #0a0a0a);
+}
+
+.staff-terminal-card__copied {
+  color: var(--ink, #0a0a0a);
+  font-family: var(--font-body, "Open Sans", system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  min-height: 20px;
+}
+
+.staff-terminal-card--compact {
+  padding: 16px;
+}
+
+.staff-terminal-card--compact .staff-terminal-card__qr-panel {
+  min-height: 176px;
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .staff-terminal-card {
+    grid-template-columns: minmax(224px, 0.8fr) minmax(0, 1fr);
+  }
+
+  .staff-terminal-card__url-row {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .staff-terminal-card__button,
+  .staff-terminal-card__button:hover:not(:disabled),
+  .staff-terminal-card__button:active:not(:disabled) {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .staff-terminal-card,
+  .staff-terminal-card * {
+    visibility: visible;
+  }
+
+  .staff-terminal-card {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+}

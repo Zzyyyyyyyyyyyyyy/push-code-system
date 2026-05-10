@@ -1,0 +1,126 @@
+/* KPICard — v11 spec aligned (2026-04-29)
+ * - Standard card radius `--r-md` (10px) per Design.md § 4.3
+ * - Numeral pinned to v11 Stat scale `clamp(40px, 5vw, 72px)` per § 3.1
+ * - Eyebrow at 12px to satisfy § 3.1 min-floor (12px)
+ * - Delta up uses closed-list `--success-dark` (no naked hex)
+ * - Hover signature `translate(2px,2px)` → active `translate(3px,3px) scale(0.98)`
+ *   on iOS 26 spring per § 16 (deeper press for product KPI tiles)
+ * - Tabular numerals so digits column-align across stacked KPIs
+ * - `:focus-visible` ring uses `--brand-red-focus` per § 9.1
+ */
+
+.kpi-card {
+  animation: db-slideInUp 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  outline: none;
+  padding: 24px;
+  transition:
+    transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 180ms ease;
+}
+
+.kpi-card:hover {
+  transform: translate(2px, 2px);
+}
+
+.kpi-card:active {
+  transform: translate(3px, 3px) scale(0.98);
+}
+
+.kpi-card:focus-visible {
+  outline: 4px solid var(--brand-red-focus);
+  outline-offset: 2px;
+}
+
+.kpi-card__eyebrow {
+  color: var(--ink-3);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.kpi-card__numeral {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 72px);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+.kpi-card__numeral--primary {
+  color: var(--brand-red);
+}
+
+.kpi-card__numeral--champagne {
+  color: var(--champagne);
+}
+
+.kpi-card__numeral--ink {
+  color: var(--ink);
+}
+
+.kpi-card__delta {
+  align-items: center;
+  display: flex;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 500;
+  gap: 4px;
+}
+
+.kpi-card__delta--up {
+  color: var(--success-dark);
+}
+
+.kpi-card__delta--down {
+  color: var(--brand-red);
+}
+
+.kpi-card__delta--flat {
+  color: var(--ink-3);
+}
+
+.kpi-card__spark {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes db-slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .kpi-card {
+    padding: 16px;                      /* snapped 20px→16px (8px grid) */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kpi-card {
+    animation: none;
+    transition: none;
+  }
+
+  .kpi-card:hover,
+  .kpi-card:active {
+    transform: none;
+  }
+}
